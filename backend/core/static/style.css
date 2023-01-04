@@ -246,6 +246,7 @@ footer{
 	display: flex;
 	align-items: center;
 	justify-content: center;
+  padding-left:2rem;
 }
 .bookimg{
 	max-width: 50vw;
@@ -558,6 +559,7 @@ table .actionstd form button:active{
 
 	.booking-page{
 		flex-direction: column-reverse;
+    padding-left:0;
 	}
 	.bookimg{
 		max-width: 90%;
