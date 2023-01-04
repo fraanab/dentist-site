@@ -13,8 +13,6 @@ SECRET_KEY = 'django-insecure-&)stonkjyv$2&yg4_z6j=hn3g!or+@ou=y%8hwfavg34rv5vbb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -25,7 +23,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_browser_reload',
     'core',
 
 ]
@@ -38,7 +35,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -125,9 +121,9 @@ EMAIL_HOST_USER = 'testingouteqw@outlook.com'
 EMAIL_HOST_PASSWORD = '1234asa123EQW'
 EMAIL_USE_TLS = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dentist-site.sentey.repl.co', 'c1ec8811-e917-40b0-82c6-c2839b729d1c.id.repl.co', 'localhost', '127.0.0.1']
 
-CSRF_TRUSTED_ORIGINS = []
+CSRF_TRUSTED_ORIGINS = ['https://dentist-site.sentey.repl.co', 'https://c1ec8811-e917-40b0-82c6-c2839b729d1c.id.repl.co',]
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_METHODS = [
     "DELETE",
