@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Book an Appointment{% endblock %}
+{% load static %}
+{% block main %}
+
+
+<section class="booking-page">
+	
+	<img class="bookimg" src="{% static '3.jpg' %}" alt="Booking Img">
+	
+	<div class="booking-page-form">
+		<h1>Book an Appointment</h1>
+		
+		{% if request.user.is_authenticated %}
+		<form action="{% url 'newAppointment' %}" method="post">
+			{% csrf_token %}
+			{{ appointmentForm }}
+			<button class="btn">Send</button>
+		</form>
+		{% else %}
+		<form>
+			{% csrf_token %}
+			{{ appointmentForm }}
+			<a href="{% url 'login' %}" class="btn">Must <span>Log In</span> to book</a>
+		</form>
+		{% endif %}
+
+	</div>
+</section>
+
+
+
+{% endblock %}

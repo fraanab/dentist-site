@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}{% endblock %} Site</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="icon" type="image/png" href="{% static 'favicon.jpg' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+	<nav id="navbar">
+		<div class="navlinks">
+			<a href="/">Home</a>
+			<a href="{% url 'contact' %}">Contact</a>
+			<a href="{% url 'bookpage' %}">Book</a>
+		</div>
+		<h1 class="title" id="title">John Doe</h1>
+		<div class="log">
+			{% if request.user.is_authenticated %}
+				<a href="{% url 'logout' %}" class="btn">Log Out</a>
+				{% if request.user.is_superuser %}
+				<a href="{% url 'dashboard' %}" class="btn">Dashboard</a>
+				{% else %}
+				<a href="{% url 'myaccount' %}" class="btn">{{ request.user.username }}</a>
+				{% endif %}
+			{% else %}
+				<a href="{% url 'login' %}" class="btn">Log In</a>
+				<a href="{% url 'signup' %}" class="btn">Sign Up</a>
+			{% endif %}
+		</div>
+		<button id="navbtn"><i class="fa-solid fa-bars"></i></button>
+	</nav>
+
+	<main>
+	{% block main %}
+	{% endblock %}
+	</main>
+
+	<script>
+		let navbtn = document.getElementById('navbtn')
+		let navbar = document.getElementById('navbar')
+		let main = document.querySelector('main')
+		// navbtn.addEventListener('click', function(){
+		// 	if(navbar.style.top === '-110px'){
+		// 		navbar.style.top = '0'
+		// 	}else{navbar.style.top='-110px'}
+		// })
+		function openNav(){
+			navbar.style.top = '0'
+		}
+		function closeNav(){
+			navbar.style.top = '-110px'
+		}
+		function myFunction(x) {
+			if (x.matches) { // If media query matches
+				navbtn.addEventListener('click',openNav)
+				main.addEventListener('click', closeNav)
+			}else{
+				navbar.style.top = '0'
+				main.removeEventListener('click', closeNav)
+				console.log(':)')
+			}
+		}
+
+		let x = window.matchMedia("(max-width: 601px)")
+		myFunction(x) // Call listener function at run time
+		x.addListener(myFunction) // Attach listener function on state changes
+	</script>
+	{% block scripts %}
+	{% endblock %}
+</body>
+
+
+<footer>
+	<div class="footerlinks">
+		<a href="/">Home</a>
+		<a href="{% url 'contact' %}">Contact</a>
+		<a href="{% url 'bookpage' %}">Book</a>
+		{% if request.user.is_authenticated %}
+			<a href="{% url 'logout' %}">Log Out</a>
+			{% if request.user.is_superuser %}
+			<a href="{% url 'dashboard' %}">Dashboard</a>
+			{% else %}
+			<a href="{% url 'myaccount' %}">My Account</a>
+			{% endif %}
+		{% else %}
+			<a href="{% url 'login' %}">Log In</a>
+			<a href="{% url 'signup' %}">Sign Up</a>
+		{% endif %}
+	</div>
+	<div class="footerlinks">
+		<a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+		<a href="#"><i class="fa-brands fa-square-twitter"></i></a>
+		<a href="#"><i class="fa-brands fa-linkedin"></i></a>
+	</div>
+</footer>
+</html>

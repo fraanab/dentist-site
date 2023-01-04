@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Sign Up{% endblock %}
+{% block main %}
+<section class="signup-form">
+	
+	<form action="." method="POST">
+		{% csrf_token %}
+		<h1>Sign Up Page</h1><!-- 
+		<input type="text" name="fname" placeholder="First Name">
+		<input type="text" name="lname" placeholder="Last Name">
+		<input type="text" name="username" placeholder="Username">
+		<input type="email" name="email" placeholder="Email">
+		<input type="password" name="password1" placeholder="Password">
+		<input type="password" name="password2" placeholder="Repeat Password"> -->
+		{{form}}
+		<button class="btn">Register</button>
+		<a href="{% url 'login' %}">Already have an account? log in</a>
+		{% for error in form.errors %}
+		{% endfor %}
+	</form>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block main %}
+
+<section id="admin-dash">
+
+	<div class="dash-resume">
+		<div>
+			<p>Appointments <i class="fa-solid fa-book-bookmark"></i></p>
+			<span>{{ appointments_total }}</span>
+		</div>
+		<div>
+			<p>Messages <i class="fa-solid fa-envelopes-bulk"></i></p>
+			<span>{{ contact_total }}</span>
+		</div>
+	</div>
+
+	<div class="django-link">
+		<a href="{% url 'admin:index' %}" target="_blank" class="django-link btn">Take me to the django page.</a>
+	</div>
+
+	<div class="appointments-view">
+		<h3>Appointments</h3>
+		{% if appointments %}
+			<table>
+				<thead>
+					<tr>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Email</th>
+						<th>Message</th>
+						<th>Date</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for appointment in appointments%}
+					<tr>
+						<td>{{appointment.first_name}}</td>
+						<td>{{appointment.last_name}}</td>
+						<td>{{appointment.email}}</td>
+						<td class="apmsg">{{appointment.message}}</td>
+						<td>{{appointment.date}} at {{appointment.time}}</td>
+						<td class="actionstd">
+							<a href="{% url 'update' appointment.pk %}" class="btn">Update</a>
+							<form action="{% url 'delete' appointment.pk %}" method="post">{% csrf_token %} <button class="btn">Delete</button></form>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<p class="subtle">Hold click to read messages</p>
+		{% else %}
+			<p class="noapp subtle">No Appointments have been booked lately.</p>
+			<br>
+			<p class="noapp subtle">You are up to date.</p>
+		{% endif %}
+	</div>
+
+	<div class="appointments-view">
+		<h3>Contact Messages</h3>
+		{% if contact_messages %}
+			<table>
+				<thead>
+					<tr>
+						<th>Email</th>
+						<th>Message</th>
+						<th>Date</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for msg in contact_messages %}
+					<tr>
+						<td>{{msg.email}}</td>
+						<td class="apmsg">{{msg.message}}</td>
+						<td>{{msg.sent_at}}</td>
+						<td class="actionstd">
+							<a target="_blank" href="https://mail.google.com/mail/?view=cm&fs=1&to={{msg.email}}&body={{msg.message}}" class="btn">Answer</a>
+							<form action="{% url 'deletemsg' msg.pk %}" method="post">{% csrf_token %} <button class="btn">Delete</button></form>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<p class="subtle">Hold click to read messages</p>
+		{% else %}
+			<p class="nomsg subtle">The messages box is empty.</p>
+		{% endif %}
+	</div>
+
+	<div class="django-link">
+		<a href="{% url 'admin:index' %}" target="_blank" class="django-link btn">Take me to the django page.</a>
+	</div>
+
+</section>
+
+{% endblock %}

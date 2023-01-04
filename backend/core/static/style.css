@@ -1,0 +1,598 @@
+@font-face{
+	src: url('./PublicSans-VariableFont_wght.ttf');
+	font-family: 'PublicSans';
+}
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+:root{
+	font-family: 'PublicSans', sans-serif;
+	font-size: 16px;
+	--a: #07beb8;
+	--b: #3dccc7;
+	--c: #68d8d6;
+	--d: #9ceaef;
+	--e: #c4fff9;
+	--err: #b21e35;
+	--val: #93e5ab;
+}
+a{
+	color: #333;
+	text-decoration: none;
+}
+li{ list-style-type: none; }
+.btn{
+	padding: 12px 20px;
+	border-radius: 30px;
+	background: #fff;
+	color: #000;
+	cursor: pointer;
+	border: none;
+}
+.btn:hover{
+	background: var(--a);
+	color: #fff;
+}
+body{
+	background: #f1f1f1;
+}
+::-webkit-scrollbar{
+	width: 10px;
+	background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb{
+	background: var(--c);
+}
+nav{
+	width: 100%;
+	padding: 2rem 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	background: var(--c);
+	margin-bottom: 2rem;
+}
+#navbtn{
+	display: none;
+}
+.title{
+	color: #fff;
+	text-shadow: 2px 2px #888;
+	position: relative;
+}nav a:not(.btn){color: #fff;text-shadow: 1px 1px #888; position: relative;}
+nav a:not(.btn):hover:before{
+	content: '';
+	width: 5px;
+	height: 5px;
+	background: #fff;
+	box-shadow: 2px 2px #888;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: -14px;
+	margin: auto 0;
+	border-radius: 3px;
+}
+nav a:not(.btn):hover:after{
+	content: '';
+	width: 5px;
+	height: 5px;
+	background: #fff;
+	box-shadow: 2px 2px #888;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: -14px;
+	margin: auto 0;
+	border-radius: 3px;
+}
+.navlinks a,.log a{
+	margin: 0 12px;
+}
+
+::selection{
+	background: var(--a);
+	color: #fff;
+}
+.hero{
+	width: 100%; height: 70vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 45px;
+	background: url('./hero2.jpg');
+	background-size: cover;
+/*	background-position-y: -220px;*/
+	object-fit: cover;
+	position: relative;
+	background-repeat: no-repeat;
+	margin-bottom: 2rem;
+}
+.hero:after{
+	position: absolute;
+	top: 0;left: 0;
+	content: '';
+	width: 100%; height: 100%;
+	backdrop-filter: blur(2px);
+	-webkit-backdrop-filter: blur(2px);
+/*	background: rgba(0, 0, 0, .4);*/
+	background: #9ceaef77;
+	z-index: 2;
+}
+.hero div a,
+.hero div{
+	z-index: 3;
+}
+.hero div a{
+	width: 200px;
+	text-align: center;
+	box-shadow: 2px 2px #ccc;
+}
+.hero div h2{font-size: 4rem;color: #fff; text-shadow: 2px 2px #ccc}
+.hero div h4{font-size: 3rem;color: #fff; text-shadow: 2px 2px #ccc}
+.hero div:not(:first-child){
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+}
+.herobtn .btn:first-child{
+	background: var(--b);
+	color: #fff;
+}
+.herobtn .btn:first-child:active{
+	background: #fff;
+	color: #000;
+}
+.brief{
+	width: 100%;height: 100%;
+	padding: 20px 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	background: var(--b);
+	margin-bottom: 2rem;
+}
+.brief div{
+	width: 255px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	height: 100%;
+	overflow: hidden;
+}
+.brief i{font-size: 3rem;}
+.brief span{font-size: 1.3rem;font-weight: bolder;}
+.brief p{color: #eee}
+
+.front-info{
+/*	width: 75%;*/
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	background: var(--d);
+	margin: 0 auto;
+/*	border-radius: 50px;*/
+	padding: 70px;
+	gap: 10px;
+}
+.front-info-sec{
+	color: #fff;
+	text-shadow: 1px 1px var(--b);
+	width: 30%;
+}
+.front-info-sec form{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+}
+.front-info-sec form input, .front-info-sec form textarea{box-shadow: 3px 3px #ccc;}
+.field{
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	width: 100%;
+	justify-content: space-between;
+}
+form input, textarea{
+	width: 100%;
+	resize: none;
+	background: #fff;
+	padding: 12px;
+	border: 1px solid #555;
+	font-family: 'PublicSans';
+}
+.front-info-sec form .btn{width: 50%;box-shadow: 3px 3px #ccc;}
+.front-info-sec h3{
+	font-size: 25px;
+}
+footer{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	background: #333;
+	padding: 50px;
+	margin-top: 2rem;
+}
+.footerlinks{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+.footerlinks a{color: #fff;}
+.footerlinks a:hover{color: var(--c);}
+.footerlinks i{font-size: 2rem;}
+
+.booking-page{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.bookimg{
+	max-width: 50vw;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	z-index: 1;
+}
+.booking-page-form{
+	padding: 0 30px;
+}
+.booking-page-form h1{
+	text-align: center;
+}
+.contact-map{
+	width: 100%;
+	height: 355px;
+}
+.contact-map iframe{
+	width: 100%;
+	height: 100%;
+	filter: grayscale(100%);
+}
+.contact-form{
+	width: 100%;
+	margin-bottom: 1rem;
+}
+.contact-form form{
+	width: clamp(50%, 600px, 90%);
+	margin: 0 auto;
+}
+.appointments{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	padding-top: 1rem;
+	gap: 1rem;
+}
+.appointment{
+	width: 400px;
+	height: 300px;
+	padding: 30px;
+	border-radius: 50px;
+	background: var(--b);
+	color: #fff;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	justify-content: center;
+	gap: 20px;
+}
+.appointment div{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+.appointment div p{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	color: #f1f1f1;
+}
+.appointment div p span{
+	color: #fff;
+	font-weight: 700;
+	letter-spacing: 1px;
+}
+.appointment ul{width: 100%;}
+.appointment ul li{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.actions{
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-around;
+}
+.actions .btn{
+	font-size: .8rem;
+	text-align: center;
+}
+.update-form{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.login-form form,.signup-form form,
+.update-form form{
+	width: clamp(325px, 600px, 90%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+.update-form form .btn{
+	font-size: .8rem;
+	width: 45%;
+}
+.signup-form,
+.login-form{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+#admin-dash{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	justify-content: center;
+	gap: 2rem;
+}
+.dash-resume{
+	width: 100%;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+}
+.dash-resume div{
+	display: flex;flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	background: var(--c);
+	padding: 35px;
+	border-radius: 20px;
+	color: #fff;
+	text-shadow: 1px 1px #888;
+	width: 200px;
+	height: 180px;
+}
+.dash-resume div span{
+	font-size: 1.5rem;
+}
+.appointments-view{
+	width: 100%;
+	overflow-x: scroll;
+}
+.appointments-view h3{text-align: center}
+.appointments-view table{
+	width: 90%;
+	margin: 0 auto;
+	background: #fff;
+	padding: 1rem;
+	height: 100%;
+}
+.appointments-view table tbody{
+	height: 100%;
+}
+.appointments-view table tbody tr{
+/*	margin: 20px 0;*/
+	height: 50px;
+	border-top: 1px solid #ccc;
+}
+.appointments-view table thead{
+	background: var(--c);
+	height: 40px;
+}
+.appointments-view table tbody tr td{
+	min-width: 168px;
+	overflow-x: hidden;
+}
+table .actionstd form button{
+	background: var(--err);
+	color: #fff;
+}
+table .actionstd form button:active{
+	background: #333;
+	color: #fff;
+}
+.nomsg,
+.noapp{text-align: center}
+
+.actionstd{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.actionstd .btn{
+	width: 100%;
+	text-align: center;
+}
+.django-link{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.django-link .btn{
+	width: initial;
+}
+.apmsg{cursor: pointer;}
+.apmsg:active{
+	position: absolute;
+	top: 0;left: 0;right: 0;bottom: 0;
+	margin: auto;
+	background: #fff;
+	width: 80%;height: 50%;
+	padding: 45px;
+	border: 2px solid #ccc;
+	border-radius: 10px;
+}
+.subtle{
+	text-align: center;
+	font-size: .8rem;
+	color: #888;
+	margin: 10px 0;
+}
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 600px){
+
+	nav{
+		display: flex;
+		padding: 0;
+		height: 168px;
+		flex-direction: column;
+		margin: 0;
+		position: fixed;
+		z-index: 99;
+		top: -110px;left: 0;
+		transition: .3s;
+	}
+	.navlinks{
+		margin: 12px 0;
+	}
+	.log{
+		display: flex;
+		align-items: center;
+	}
+	.log .btn{
+		width: 150px;
+		text-align: center;
+	}
+	.title{display: none}
+	#navbtn{
+		display: block;
+		width: 100%;
+		text-align: center;
+		background: transparent;
+		border: none;
+		cursor: pointer;
+		font-size: 1.5rem;
+		color: #fff;
+		margin-top: 1rem;
+		padding: 12px 0;
+	}
+	#navbtn:hover{
+		background: #fff;
+		color: #333;
+	}
+
+	.hero{
+		background-position-y: 0;
+		background-size: cover;
+		background-position-x: -190px;
+	}
+
+	main{
+		margin-top: 59px;
+	}
+	.hero div{
+		margin: 0 10vw;
+	}
+	.brief{
+		gap: 20px;
+	}
+	.brief div{
+		width: clamp(100px, 260px, 80%);
+	}
+	.front-info{
+		padding: 20px;
+		flex-direction: column;
+	}
+	.front-info-sec{
+		width: 100%;
+	}
+	footer{
+		padding: 20px;
+		gap: 35px;
+	}
+
+	.booking-page{
+		flex-direction: column-reverse;
+	}
+	.bookimg{
+		max-width: 90%;
+		margin-top: 1rem;
+	}
+	.login-form,.signup-form,
+	.update-form{
+		padding-top: 1rem;
+	}
+	.apmsg:active{
+		position: static;
+		top: 0;left: 0;right: 0;bottom: 0;
+		margin: none;
+		width: 80%; height: 50%;
+		background: #fff;
+		padding: initial;
+		border: initial;
+		border-radius: initial;
+	}
+	.apmsg:hover{
+		position: absolute;
+		top: 0;left: 0;right: 0;bottom: 0;
+		margin: auto;
+		background: #fff;
+		width: 80%;height: 50%;
+		padding: 45px;
+		border: 2px solid #ccc;
+		border-radius: 10px;
+	}
+	.subtle{
+		text-align: center;
+		font-size: .8rem;
+		color: #888;
+		margin: 10px 0;
+	}
+	#admin-dash{
+		margin-top: 5rem;
+	}
+	.dash-resume{
+		width: 100%;
+		flex-wrap: wrap;
+		gap: 20px;
+	}
+
+}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Login In{% endblock %}
+{% block main %}
+<section class="login-form">
+	
+	<form action="." method="post">
+		{% csrf_token %}
+		<h1>Log In Page</h1>
+		<input type="text" name="username" placeholder="Username">
+		<input type="password" name="password" placeholder="Password">
+
+		{% if form.errors %}
+			{% for field in form %}
+				{% for error in field.errors %}
+				<div>
+					<p>{{ error|escape }}</p>
+				</div>
+				{% endfor %}
+			{% endfor %}
+
+			{% for error in form.non_field_errors %}
+			<div>
+				<p>{{ error|escape }}</p>
+			</div>
+			{% endfor %}
+		{% endif %}
+
+		<button type="submit" class="btn">Log In</button>
+		<a href="{% url 'signup' %}">Don't have an account? create one</a>
+	</form>
+
+</section>
+
+{% endblock %}

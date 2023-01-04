@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %} {{ request.user.username }} | Update Appointment {% endblock %}
+{% block main %}
+
+<section class="update-form">
+	
+	<form action="." method="POST">
+		{% csrf_token %}
+		<p>Appointment id: {{appointment.id}}</p>
+		<input type="text" name="first_name" required placeholder="First Name" value="{{appointment.first_name}}">
+		<input type="text" name="last_name" required placeholder="Last Name" value="{{appointment.last_name}}">
+		
+		<label for="message">Message: </label>
+		<textarea name="message" id="" cols="30" rows="10" id="message">{{appointment.message}}</textarea>
+
+		<label for="date">New Date: </label>
+		<input type="date" name="date" id="date">
+		<label for="time">New Time:</label>
+		<input type="time" name="time" id="time">
+
+		<section class="actions">
+			<a href="{% url 'myaccount' %}" class="btn">Cancel</a>
+			<button class="btn">Submit</button>
+		</section>
+	</form>
+
+</section>
+
+{% endblock %}

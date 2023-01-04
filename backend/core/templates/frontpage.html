@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block main %}
+
+<section class="hero">
+	<div>
+		<h2>Healthy smile,</h2>
+		<h4>Vibrant smile!</h4>
+	</div>
+	<div class="herobtn">
+		<a href="{% url 'bookpage' %}" class="btn">Book Appointment</a>
+		<a href="{% url 'contact' %}" class="btn">Place</a>
+	</div>
+</section>
+
+<section class="brief">
+	<div>
+		<i class="fa-solid fa-face-grin-wide"></i>
+		<span>Teeth Whitening</span>
+		<p>
+			Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate tenetur excepturi unde reiciendis obcaecati ex. Soluta quisquam, ipsum, rerum maxime totam maiores quis.
+		</p>
+	</div>
+	<div>
+		<i class="fa-solid fa-tooth"></i>
+		<span>Teeth Cleaning</span>
+		<p>
+			Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate tenetur excepturi unde reiciendis obcaecati ex. Soluta quisquam, ipsum, rerum maxime totam maiores quis.
+		</p>
+	</div>
+	<div>
+		<i class="fa-solid fa-teeth"></i>
+		<span>Bracers</span>
+		<p>
+			Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate tenetur excepturi unde reiciendis obcaecati ex. Soluta quisquam, ipsum, rerum maxime totam maiores quis.
+		</p>
+	</div>
+	<div>
+		<i class="fa-solid fa-display"></i>
+		<span>Modern Aesthetic</span>
+		<p>
+			Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate tenetur excepturi unde reiciendis obcaecati ex. Soluta quisquam, ipsum, rerum maxime totam maiores quis.
+		</p>
+	</div>
+	
+</section>
+
+<section class="front-info">
+	<div class="front-info-sec">
+		<h3>Clinic News</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni tenetur maiores perspiciatis sint amet perferendis provident minima eaque.</p>
+	</div>
+	<div class="front-info-sec">
+		<h3>Opening Hours</h3>
+		<div class="field">
+			<ul>
+				<li>Monday, Friday</li>
+				<li>Saturday</li>
+				<li>Sunday</li>
+			</ul>
+			<ul>
+				<li>09:00 - 17:00</li>
+				<li>09:00 - 12:00</li>
+				<li>09:00 - 12:00</li>
+			</ul>
+		</div>
+	</div>
+	<div class="front-info-sec">
+		<h3>Booking a Visit</h3>
+		<form action="{% url 'newAppointment' %}" method="post">
+			{% csrf_token %}
+			{{ appointmentForm }}
+
+			{% if request.user.is_authenticated %}
+				<button class="btn">Send</button>
+			{% else %}
+				<a href="{% url 'login' %}">Must <span>Log In</span> to book</a>
+			{% endif %}
+		</form>
+	</div>
+</section>
+
+{% endblock %}

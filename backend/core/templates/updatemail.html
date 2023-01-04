@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Your appointment has been updated!</title>
+	<style>
+		*{
+			padding: 0;margin: 0;box-sizing: border-box;
+		}
+		:root{font-family: sans-serif;font-size: 16px}
+		ul li{list-style-type: none}
+		a{text-decoration: none; color: #18c}
+	</style>
+</head>
+<body>
+	<h1>Your appointment has been <span>updated!</span></h1>
+	<div>
+		<p>First Name: <span>{{appointment.first_name}}</span></p>
+		<p>Last Name: <span>{{appointment.last_name}}</span></p>
+	</div>
+
+	<p>Message: {{appointment.message}}</p>
+
+	<ul>
+		<li>Date: <span>{{appointment.date}}</span></li>
+		<li>Time: <span>{{appointment.time}}</span></li>
+		<li>Submited at: <span>{{appointment.created_at}}</span></li>
+	</ul>
+
+	<a href="#" >Take me to my page</a>
+</body>
+</html>
