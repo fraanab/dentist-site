@@ -468,10 +468,17 @@ table .actionstd form button:active{
 	margin: 10px 0;
 }
 
+.empty{
+	min-height: 50vh;
+	display: flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content: center;
+}
 
 
-
-
+.empty p a{text-decoration: underline;}
+.empty div i{font-size: 1.5rem}
 
 
 

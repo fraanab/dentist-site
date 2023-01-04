@@ -3,35 +3,42 @@
 {% block main %}
 
 <section class="appointments">
-	
-{% for appointment in userappointment %}
+{% if appointments %}
+	{% for appointment in userappointment %}
 
-	<div class="appointment">
-		<div>
-			<p>First Name: <span>{{appointment.first_name}}</span></p>
-			<p>Last Name: <span>{{appointment.last_name}}</span></p>
+		<div class="appointment">
+			<div>
+				<p>First Name: <span>{{appointment.first_name}}</span></p>
+				<p>Last Name: <span>{{appointment.last_name}}</span></p>
+			</div>
+
+			<p>Message: {{appointment.message}}</p>
+
+			<ul>
+				<li>Date: <span>{{appointment.date}}</span></li>
+				<li>Time: <span>{{appointment.time}}</span></li>
+				<li>Submited at: <span>{{appointment.created_at}}</span></li>
+			</ul>
+
+			<section class="actions">
+				<a href="{% url 'update' appointment.pk %}" class="btn">Update Appointment</a>
+				
+				<form action="{% url 'delete' appointment.pk %}" method="post">
+					{% csrf_token %}
+					<button class="btn">Cancel Appointment</button>
+				</form>
+			</section>
 		</div>
 
-		<p>Message: {{appointment.message}}</p>
-
-		<ul>
-			<li>Date: <span>{{appointment.date}}</span></li>
-			<li>Time: <span>{{appointment.time}}</span></li>
-			<li>Submited at: <span>{{appointment.created_at}}</span></li>
-		</ul>
-
-		<section class="actions">
-			<a href="{% url 'update' appointment.pk %}" class="btn">Update Appointment</a>
-			
-			<form action="{% url 'delete' appointment.pk %}" method="post">
-				{% csrf_token %}
-				<button class="btn">Cancel Appointment</button>
-			</form>
-		</section>
+	{% endfor %}
+{% else %}
+	<div class="empty">
+		<p class="subtle"><a href="{% url 'bookpage' %}">Appointments</a> are displayed here.</p>
+		<div class="django-link">
+			<i class="fa-solid fa-book-bookmark"></i>
+		</div>
 	</div>
-
-{% endfor %}
-
+{% endif %}
 </section>
 
 {% endblock %}
