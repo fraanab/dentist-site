@@ -49,9 +49,9 @@ def success(request):
 	return render(request, 'success.html')
 
 def myaccount(request):
+	userappointment = Appointment.objects.filter(username=request.user)
 	if request.user.is_superuser:
 		return redirect('dashboard')
-	userappointment = Appointment.objects.filter(username=request.user)
 	if request.method == 'POST':
 		userappointment.delete()
 		return redirect('myaccount')
