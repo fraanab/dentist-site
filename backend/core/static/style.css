@@ -96,21 +96,7 @@ nav a:not(.btn):hover:after{
 	background: var(--a);
 	color: #fff;
 }
-.hero{
-	width: 100%; height: 70vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 45px;
-	background: url('./hero2.jpg');
-	background-size: cover;
-/*	background-position-y: -220px;*/
-	object-fit: cover;
-	position: relative;
-	background-repeat: no-repeat;
-	margin-bottom: 2rem;
-}
+
 .hero:after{
 	position: absolute;
 	top: 0;left: 0;

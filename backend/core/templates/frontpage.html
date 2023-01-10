@@ -1,6 +1,23 @@
 {% extends 'base.html' %}
 {% block title %}Home{% endblock %}
+{% load static %}
 {% block main %}
+<style>
+  .hero{
+	width: 100%; height: 70vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 45px;
+	background: url("{% static 'hero2.jpg' %}");
+	background-size: cover;
+	object-fit: cover;
+	position: relative;
+	background-repeat: no-repeat;
+	margin-bottom: 2rem;
+}
+</style>
 
 <section class="hero">
 	<div>

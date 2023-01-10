@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -7,10 +8,29 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-&)stonkjyv$2&yg4_z6j=hn3g!or+@ou=y%8hwfavg34rv5vbb'
+SECRET_KEY = os.getenv('SK')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+
+ALLOWED_HOSTS = [
+  'dentist-site-1.sentey.repl.co',
+  'd3cc99ee-8b25-4042-8bd1-49689a111528.id.repl.co', 'localhost', '127.0.0.1'
+]
+
+CSRF_TRUSTED_ORIGINS = [
+  'https://dentist-site-1.sentey.repl.co',
+  'https://d3cc99ee-8b25-4042-8bd1-49689a111528.id.repl.co',
+]
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_METHODS = [
+  "DELETE",
+  "GET",
+  "OPTIONS",
+  "PATCH",
+  "POST",
+  "PUT",
+]
 
 # Application definition
 
@@ -21,11 +41,14 @@ INSTALLED_APPS = [
   'django.contrib.sessions',
   'django.contrib.messages',
   'django.contrib.staticfiles',
+  'cloudinary_storage',
+  'cloudinary',
   'core',
 ]
 
 MIDDLEWARE = [
   'django.middleware.security.SecurityMiddleware',
+  "whitenoise.middleware.WhiteNoiseMiddleware",
   'django.contrib.sessions.middleware.SessionMiddleware',
   'django.middleware.common.CommonMiddleware',
   'django.middleware.csrf.CsrfViewMiddleware',
@@ -97,8 +120,25 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+# CLOUDINARY_STORAGE = {
+#   'CLOUD_NAME': os.getenv('CN'),
+#   'API_KEY': os.getenv('AK'),
+#   'API_SECRET': os.getenv('AS')
+# }
+# STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+
+# STATIC_URL = '/dentist/static/'
+# STATIC_ROOT = BASE_DIR / 'dentist/static/'
+
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'backend/static/'
+
+STATICFILES_DIRS = (
+  os.path.join(BASE_DIR, 'static'),
+)
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -112,26 +152,7 @@ LOGIN_URL = '/login/'
 EMAIL_HOST = 'smtp-mail.outlook.com'
 EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'testingouteqw@outlook.com'
-EMAIL_HOST_PASSWORD = '1234asa123EQW'
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASS')
 EMAIL_USE_TLS = True
-
-ALLOWED_HOSTS = [
-  'dentist-site-1.sentey.repl.co',
-  'd3cc99ee-8b25-4042-8bd1-49689a111528.id.repl.co', 'localhost', '127.0.0.1'
-]
-
-CSRF_TRUSTED_ORIGINS = [
-  'https://dentist-site-1.sentey.repl.co',
-  'https://d3cc99ee-8b25-4042-8bd1-49689a111528.id.repl.co',
-]
-CORS_ALLOW_ALL_ORIGINS = False
-CORS_ALLOW_METHODS = [
-  "DELETE",
-  "GET",
-  "OPTIONS",
-  "PATCH",
-  "POST",
-  "PUT",
-]
 
 X_FRAME_OPTIONS = '*'
